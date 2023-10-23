@@ -20,7 +20,7 @@ def check_proxies():
     for proxy in proxies:
         try:
             # Check if the proxy is specified as an IP address
-            if ':' in proxy:
+            if proxy.count(".") >= 3:
                 ip_address = proxy.split(':')[0]
             else:
                 # Resolve the hostname to get the IP address
