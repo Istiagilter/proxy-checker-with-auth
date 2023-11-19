@@ -28,7 +28,7 @@ def check_proxies():
 
             proxy_url = f'http://{ip_address}'
 
-            # Perform the request using the proxy
+            # Check proxy and get country
             response = requests.get('https://api.ipify.org', proxies={'http': proxy_url, 'https': proxy_url}, auth=auth, timeout=5)
             
             if response.ok:
@@ -36,12 +36,10 @@ def check_proxies():
         except (socket.gaierror, requests.exceptions.RequestException):
             pass
 
-    # Save the working proxies to the result file
     with open('result.txt', 'w') as result_file:
         result_file.write('\n'.join(working_proxies))
 
     print(f"Total working proxies: {len(working_proxies)}")
     print("Working proxies saved to result.txt")
 
-# Execute the check_proxies function
 check_proxies()
